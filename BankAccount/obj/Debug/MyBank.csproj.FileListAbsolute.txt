@@ -1,0 +1,7 @@
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.csproj.CoreCompileInputs.cache
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\bin\Debug\BankAccount.dll
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\bin\Debug\BankAccount.pdb
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\BankAccount.dll
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\BankAccount.pdb
+C:\Users\USER\Visual Studio Projects\Bank\_Debug\BankAccount.dll
+C:\Users\USER\Visual Studio Projects\Bank\_Debug\BankAccount.pdb
