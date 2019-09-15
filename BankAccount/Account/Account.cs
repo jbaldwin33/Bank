@@ -10,11 +10,9 @@ namespace Bank
   {
     private double balance;
     public double Balance { get; set; }
+    private User user;
+    public User User { get; }
     
-    public User GetUserByID(int id)
-    {
-      throw new NotImplementedException(); 
-    }
 
   }
 }

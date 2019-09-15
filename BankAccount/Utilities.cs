@@ -8,9 +8,8 @@ namespace Bank
 {
   public static class Utilities
   {
-    public static void ShowActivity(User user)
-    {
+    
 
-    }
+    
   }
 }
