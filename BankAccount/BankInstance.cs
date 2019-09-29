@@ -3,15 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bank.MyBank.Models;
+using Bank.MyBank.ViewModels;
 
 namespace Bank
 {
   public class BankInstance
   {
-    private static List<Account> listOfAccounts;
-    public static List<Account> ListOfAccounts { get; }
-    private static List<User> listOfUsers;
-    public static List<User> ListOfUsers { get; }
+    private static List<IAccount> listOfAccounts = new List<IAccount>();
+    public static List<IAccount> ListOfAccounts
+    {
+      get { return listOfAccounts; }
+      set { listOfAccounts = value; }
+    }
+    private static List<IUser> listOfUsers = new List<IUser>();
+    public static List<IUser> ListOfUsers
+    {
+      get { return listOfUsers; }
+      set { listOfUsers = value; }
+    }
 
     public BankInstance() { }
 
@@ -20,19 +30,28 @@ namespace Bank
       return this;
     }
 
-    public User GetUserByID(int id)
+    public IUser GetUserByID(int id)
     {
       return listOfUsers.Where(x => x.ID == id).FirstOrDefault();
     }
 
-    public Account GetAccountByUserID(int id)
+    public IAccount GetAccountByUserID(int id)
     {
       return listOfAccounts.Where(x => x.User.ID == id).FirstOrDefault();
     }
 
-    public static void ShowAccountActivity(User user)
+    public static void ShowAccountActivity(IUser user)
     {
 
+    }
+
+    public void AddAccount(IAccount account)
+    {
+      listOfAccounts.Add(account);
+    }
+    public void AddUser(IUser user)
+    {
+      listOfUsers.Add(user);
     }
   }
 }

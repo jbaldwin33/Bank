@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank
+namespace Bank.MyBank.ViewModels
 {
-  public static class Utilities
+  public class CustomerViewModel
   {
-
-    
   }
 }

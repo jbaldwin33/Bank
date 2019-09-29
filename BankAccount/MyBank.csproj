@@ -41,16 +41,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\Account.cs" />
+    <Compile Include="IBasePropertyChanged.cs" />
+    <Compile Include="Models\Account\Account.cs" />
     <Compile Include="BankInstance.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Models\Account\IAccount.cs" />
+    <Compile Include="Models\User\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\Administrator.cs" />
-    <Compile Include="User\Customer.cs" />
-    <Compile Include="User\User.cs" />
-    <Compile Include="User\UserEnum.cs" />
+    <Compile Include="Models\User\Administrator.cs" />
+    <Compile Include="Models\User\Customer.cs" />
+    <Compile Include="Models\User\UserEnum.cs" />
     <Compile Include="Utilities.cs" />
+    <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
+    <Compile Include="ViewModels\AdministratorViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
