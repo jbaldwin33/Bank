@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank.MyBank.ViewModels
+namespace Bank.MyBank.Services
 {
-  public class LoginViewModel : BaseViewModel
+  public interface INavigation
   {
+
   }
 }

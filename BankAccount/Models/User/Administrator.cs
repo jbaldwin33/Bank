@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bank.MyBank.Models
 {
-  public class Administrator : IUser
+  public class Administrator : NotifyPropertyChanged, IUser
   {
     private string username;
     public string Username
@@ -16,7 +16,6 @@ namespace Bank.MyBank.Models
       get { return username; }
       set
       {
-        username = value;
         SetProperty(ref username, value);
       }
     }
@@ -26,7 +25,6 @@ namespace Bank.MyBank.Models
       get { return password; }
       set
       {
-        password = value;
         SetProperty(ref password, value);
       }
     }
@@ -37,28 +35,26 @@ namespace Bank.MyBank.Models
       get { return userType; }
       set
       {
-        userType = value;
         SetProperty(ref userType, value);
       }
     }
 
-    private int id;
-    public int ID
+    private Guid id;
+    public Guid ID
     {
       get { return id; }
       set
       {
-        id = value;
         SetProperty(ref id, value);
       }
     }
 
-    public Administrator(string username, string password, UserEnum userType, int id)
+    public Administrator(string username, string password, UserEnum userType)
     {
       this.username = username;
       this.password = password;
       this.userType = userType;
-      this.id = id;
+      this.id = Guid.NewGuid();
     }
 
     public void SeeActivity(IUser user, string password, UserEnum type)
@@ -70,29 +66,5 @@ namespace Bank.MyBank.Models
     {
       throw new NotImplementedException();
     }
-
-    public bool SetProperty<T>(ref T fieldName, T value, [CallerMemberName] string propertyName = null)
-    {
-      if (EqualityComparer<T>.Default.Equals(fieldName, value))
-      {
-        return false;
-      }
-
-      fieldName = value;
-      RaisePropertyChanged(propertyName);
-      return true;
-    }
-
-    protected void RaisePropertyChanged(string propertyName)
-    {
-      PropertyChangedEventHandler handler = PropertyChanged;
-      if (handler != null)
-      {
-        handler(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
   }
 }

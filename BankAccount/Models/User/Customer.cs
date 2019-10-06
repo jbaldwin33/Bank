@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bank.MyBank.Models
 {
-  public class Customer : IUser
+  public class Customer : NotifyPropertyChanged, IUser
   {
     private string username;
     public string Username
@@ -16,8 +16,7 @@ namespace Bank.MyBank.Models
       get { return username; }
       set
       {
-        username = value;
-        RaisePropertyChanged("Username");
+        SetProperty(ref username, value);
       }
     }
     private string password;
@@ -26,42 +25,49 @@ namespace Bank.MyBank.Models
       get { return password; }
       set
       {
-        password = value;
-        RaisePropertyChanged("Password");
+        SetProperty(ref password, value);
       }
+    }
+
+    private string firstName;
+    public string FirstName
+    {
+      get { return firstName; }
+      set { SetProperty(ref firstName, value); }
+    }
+
+    private string lastName;
+    public string LastName
+    {
+      get { return lastName; }
+      set { SetProperty(ref lastName, value); }
     }
 
     private UserEnum userType;
     public UserEnum UserType
     {
       get { return userType; }
-      set
-      {
-        userType = value;
-        RaisePropertyChanged("UserType");
-      }
+      set { SetProperty(ref userType, value); }
     }
 
-    private int id;
-    public int ID
+    private Guid id;
+    public Guid ID
     {
       get { return id; }
-      set
-      {
-        id = value;
-        RaisePropertyChanged("ID");
-      }
+      set { SetProperty(ref id, value); }
     }
 
     private Account account;
     public Account Account { get; set; }
 
-    public Customer(string username, string password, int id, UserEnum userType)
+    public Customer(string username, string password, string firstName, string lastName, UserEnum userType)
     {
       this.username = username;
       this.password = password;
+      this.firstName = firstName;
+      this.lastName = lastName;
       this.userType = userType;
-      this.id = id;
+      this.id = Guid.NewGuid();
     }
 
     public void SeeActivity(IUser user, string password, UserEnum type)
@@ -75,29 +81,5 @@ namespace Bank.MyBank.Models
     {
 
     }
-
-    public bool SetProperty<T>(ref T fieldName, T value, [CallerMemberName] string propertyName = null)
-    {
-      if (EqualityComparer<T>.Default.Equals(fieldName, value))
-      {
-        return false;
-      }
-
-      fieldName = value;
-      RaisePropertyChanged(propertyName);
-      return true;
-    }
-
-    protected void RaisePropertyChanged(string propertyName)
-    {
-      PropertyChangedEventHandler handler = PropertyChanged;
-      if (handler != null)
-      {
-        handler(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
   }
 }

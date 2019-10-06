@@ -30,12 +30,12 @@ namespace Bank
       return this;
     }
 
-    public IUser GetUserByID(int id)
+    public IUser GetUserByID(Guid id)
     {
       return listOfUsers.Where(x => x.ID == id).FirstOrDefault();
     }
 
-    public IAccount GetAccountByUserID(int id)
+    public IAccount GetAccountByUserID(Guid id)
     {
       return listOfAccounts.Where(x => x.User.ID == id).FirstOrDefault();
     }

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Bank.MyBank.Models
 {
-  public interface IUser : IBasePropertyChanged
+  public interface IUser
   {
     string Username { get; set; }
     string Password { get; set; }
     UserEnum UserType { get; set; }
-    int ID { get; set; }
+    Guid ID { get; set; }
     void SeeActivity(IUser user, string password, UserEnum type);
     void Validate();
   }

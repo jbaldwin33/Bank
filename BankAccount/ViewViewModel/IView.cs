@@ -4,9 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank
+namespace Bank.MyBank
 {
-    public class Class1
-    {
-    }
+  public interface IView
+  {
+    void Showing();
+
+    Boolean Closing();
+
+    void Closed();
+  }
 }
