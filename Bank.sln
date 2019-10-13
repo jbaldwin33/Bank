@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBank", "BankAccount\MyBan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankUI", "BankUI\BankUI.csproj", "{92B85BE0-17F9-4BE6-B4E8-D61691BD66ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{8FBC2A15-219D-4E51-B318-F97E4D6E5DC9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{92B85BE0-17F9-4BE6-B4E8-D61691BD66ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92B85BE0-17F9-4BE6-B4E8-D61691BD66ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92B85BE0-17F9-4BE6-B4E8-D61691BD66ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBC2A15-219D-4E51-B318-F97E4D6E5DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBC2A15-219D-4E51-B318-F97E4D6E5DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBC2A15-219D-4E51-B318-F97E4D6E5DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBC2A15-219D-4E51-B318-F97E4D6E5DC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

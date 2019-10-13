@@ -1,11 +1,11 @@
-﻿BankAccount
+﻿MyBank
 
 
 library
 C#
 .cs
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\
-Bank
+Bank.MyBank
 none
 false
 DEBUG;TRACE
@@ -16,5 +16,5 @@ DEBUG;TRACE
 141111353196
 Views\AccountDetailsView.xaml;Views\LoginView.xaml;Views\MainView.xaml;
 
-False
+True
 

@@ -9,6 +9,11 @@ namespace Bank.MyBank.ViewModels
 {
   public class AccountDetailsViewModel : BaseViewModel
   {
+    public AccountDetailsViewModel()
+    {
+      FirstName = "Josh";
+    }
+
     private string username;
     public string Username
     {

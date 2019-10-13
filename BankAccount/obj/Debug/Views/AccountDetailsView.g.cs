@@ -68,7 +68,7 @@ namespace Bank.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankAccount;component/views/accountdetailsview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MyBank;component/views/accountdetailsview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\AccountDetailsView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

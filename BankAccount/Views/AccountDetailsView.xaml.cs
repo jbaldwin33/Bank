@@ -18,9 +18,9 @@ namespace Bank.MyBank.Views
   /// <summary>
   /// Interaction logic for AccountDetailsView.xaml
   /// </summary>
-  public partial class AccountDetailsView : GridView
+  public partial class AccountDetailsView : Window
   {
-    public AccountDetailsView()
+    public AccountDetailsView() : base()
     {
       //InitializeComponent();
     }
