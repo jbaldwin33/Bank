@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace Bank.MyBank.Models
 {
-  public class Account : IAccount
+  public class Account : NotifyPropertyChanged, IAccount
   {
     private double balance;
     public double Balance
@@ -27,27 +27,5 @@ namespace Bank.MyBank.Models
     {
       balance += amount;
     }
-
-    public bool SetProperty<T>(ref T fieldName, T value, [CallerMemberName] string propertyName = null)
-    {
-      if (EqualityComparer<T>.Default.Equals(fieldName, value))
-      {
-        return false;
-      }
-
-      fieldName = value;
-      RaisePropertyChanged(propertyName);
-      return true;
-    }
-
-    protected void RaisePropertyChanged(string propertyName)
-    {
-      PropertyChangedEventHandler handler = PropertyChanged;
-      if (handler != null)
-      {
-        handler(this, new PropertyChangedEventArgs(propertyName));
-      }
-    }
-    public event PropertyChangedEventHandler PropertyChanged;
   }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bank.MyBank.Models
 {
-  public interface IAccount : IBasePropertyChanged
+  public interface IAccount
   {
     double Balance { get; set; }
     IUser User { get; }

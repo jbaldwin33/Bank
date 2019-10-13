@@ -1,13 +1,5 @@
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\bin\Debug\BankUI.exe.config
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\bin\Debug\BankUI.exe
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\bin\Debug\BankUI.pdb
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\bin\Debug\BankAccount.dll
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\bin\Debug\BankAccount.pdb
 C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.csprojAssemblyReference.cache
 C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\Bank.AccountActivity.resources
 C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\Bank.Properties.Resources.resources
 C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.csproj.GenerateResource.cache
 C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.csproj.CoreCompileInputs.cache
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.csproj.CopyComplete
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.exe
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.pdb
