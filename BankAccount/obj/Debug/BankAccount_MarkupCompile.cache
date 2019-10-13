@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-4-292950412
+5858597713
 
-25687230292
+261598089969
 141111353196
-App.xaml;Views\AccountDetailsView.xaml;Views\LoginView.xaml;Views\MainView.xaml;
+App.xaml;MainWindow.xaml;Views\AccountDetailsView.xaml;Views\LoginView.xaml;Views\MainView.xaml;
 
 True
 

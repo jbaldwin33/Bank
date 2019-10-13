@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Bank.MyBank.Views;
+using Bank.MyBank.ViewModels;
 
 namespace Bank.MyBank
 {
@@ -9,9 +11,13 @@ namespace Bank.MyBank
   /// </summary>
   public partial class App : Application
   {
-    private void Application_Startup(object sender, StartupEventArgs e)
+    private void On_Startup(object sender, StartupEventArgs e)
     {
-      var window = new MainWindow
+      base.OnStartup(e);
+      MainWindow window = new MainWindow();
+      AccountDetailsViewModel vm = new AccountDetailsViewModel();
+      window.DataContext = vm;
+      window.Show();
     }
   }
 }
