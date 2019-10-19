@@ -42,12 +42,26 @@ namespace Bank.MyBank.ViewModels
       set { SetProperty(ref lastName, value); }
     }
 
+    private bool nextOk;
+    public bool NextOk
+    {
+      get { return nextOk; }
+      set { SetProperty(ref nextOk, value); }
+    }
+
+
     public bool SaveChanges()
     {
 
       return true;
     }
 
+    public void GoToNext()
+    {
+      NextOk = true;
+    }
+
     public ICommand SaveCommand => new RelayCommand(() => { SaveChanges(); });
+    public ICommand NextCommand => new RelayCommand(() => { GoToNext(); });
   }
 }

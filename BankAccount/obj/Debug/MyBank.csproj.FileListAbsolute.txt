@@ -1,6 +1,5 @@
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\bin\Debug\BankAccount.dll
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\bin\Debug\BankAccount.pdb
-C:\Users\USER\Visual Studio Projects\Bank\_Debug\MyBank.dll
 C:\Users\USER\Visual Studio Projects\Bank\_Debug\MyBank.pdb
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\Views\AccountDetailsView.g.cs
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\Views\LoginView.g.cs
@@ -12,5 +11,8 @@ C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\Views\LoginView.
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\Views\MainView.baml
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.g.resources
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.csproj.CoreCompileInputs.cache
-C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.dll
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.pdb
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.csprojAssemblyReference.cache
+C:\Users\USER\Visual Studio Projects\Bank\_Debug\MyBank.exe
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\App.g.cs
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.exe

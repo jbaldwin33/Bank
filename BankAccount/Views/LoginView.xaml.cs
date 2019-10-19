@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank.MyBank.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,20 @@ namespace Bank.MyBank.Views
   /// <summary>
   /// Interaction logic for LoginView.xaml
   /// </summary>
-  public partial class LoginView : UserControl
+  public partial class LoginView : Window
   {
-    public LoginView()
+    private LoginViewModel viewModel;
+    public LoginView(LoginViewModel viewModel)
     {
-      //InitializeComponent();
+      this.viewModel = viewModel;
+      DataContext = viewModel;
+      viewModel.LoginHandler += LoginHandler;
+    }
+
+    private void LoginHandler(object sender, EventArgs e)
+    {
+      if (!viewModel.LoginFailed)
+        new AccountDetailsView(new AccountDetailsViewModel()).Show();
     }
   }
 }

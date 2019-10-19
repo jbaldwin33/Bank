@@ -18,8 +18,9 @@ namespace WpfApp1
   {
     private void On_Startup(object sender, StartupEventArgs e)
     {
-      AccountDetailsView mw = new AccountDetailsView();
-      AccountDetailsViewModel viewModel = new AccountDetailsViewModel();
+      LoginViewModel viewModel = new LoginViewModel();
+      LoginView mw = new LoginView(viewModel);
+      
       Account model = new Account();
       mw.Show();
     }

@@ -1,4 +1,6 @@
-﻿using Bank.MyBank.ViewModels;
+﻿using Bank.MyBank.Models;
+using Bank.MyBank.ViewModels;
+using Bank.MyBank.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +16,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Bank.MyBank.Views
+namespace Bank.MyBank
 {
   /// <summary>
-  /// Interaction logic for AccountDetailsView.xaml
+  /// Interaction logic for App.xaml
   /// </summary>
-  public partial class AccountDetailsView : Window
+  public partial class App : Application
   {
-    private AccountDetailsViewModel viewModel;
-    public AccountDetailsView(AccountDetailsViewModel viewModel) : base()
+    private void On_Startup(object sender, StartupEventArgs e)
     {
-      this.viewModel = viewModel;
-      DataContext = viewModel;
-    }
+      LoginViewModel viewModel = new LoginViewModel();
+      LoginView mw = new LoginView(viewModel);
 
-    public void GoToNextPage()
-    {
-      
+      Account model = new Account();
+      mw.Show();
     }
   }
 }

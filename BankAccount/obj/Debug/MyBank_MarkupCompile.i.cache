@@ -1,7 +1,7 @@
 ﻿MyBank
 
 
-library
+winexe
 C#
 .cs
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\
@@ -9,10 +9,10 @@ Bank.MyBank
 none
 false
 DEBUG;TRACE
-
+C:\Users\USER\Visual Studio Projects\Bank\BankAccount\App.xaml
 3-661012528
 
-25928181400
+26-1370397617
 141111353196
 Views\AccountDetailsView.xaml;Views\LoginView.xaml;Views\MainView.xaml;
 
