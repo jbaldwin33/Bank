@@ -14,6 +14,11 @@ namespace Bank.MyBank.ViewModels
     private string password;
     private bool loginFailed;
 
+    public LoginViewModel()
+    {
+
+    }
+
     public string Username
     {
       get { return username; }
@@ -34,19 +39,46 @@ namespace Bank.MyBank.ViewModels
 
     private void Login()
     {
-      if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
+      LoginFailed = true;
+      if (ValidateFields())
       {
-        LoginFailed = false;
-        DoLogin();
-      }
-      else
-      {
-        LoginFailed = true;
-        string property = string.IsNullOrEmpty(Username) ? "Username" : "Password";
-        OnDisplayMessage($"{property} cannot be empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        try
+        {
+          Utilities.Login(Username, Password);
+          LoginFailed = false;
+        }
+        catch (NullReferenceException ex) //not found exception
+        {
+          OnDisplayMessage(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        catch (Exception ex)
+        {
+          OnDisplayMessage(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        finally
+        {
+          if (!LoginFailed)
+            DoLogin();
+        }
       }
     }
 
+    private bool ValidateFields()
+    {
+      string message = string.Empty;
+      if (string.IsNullOrEmpty(Username))
+        message = "Username must contain a value.";
+      else if (string.IsNullOrEmpty(Password))
+        message = "Password must contain a value.";
+
+      if (string.IsNullOrEmpty(message))
+        return true;
+      else
+      {
+        OnDisplayMessage(message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        return false;
+      }
+    }
 
     public event EventHandler LoginHandler;
     private void DoLogin()

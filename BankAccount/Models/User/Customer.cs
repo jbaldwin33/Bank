@@ -10,6 +10,18 @@ namespace Bank.MyBank.Models
 {
   public class Customer : NotifyPropertyChanged, IUser
   {
+    public Customer() { }
+    public Customer(string username, string password, string firstName, string lastName, UserEnum userType)
+    {
+      this.username = username;
+      this.password = password;
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.userType = userType;
+      this.id = Guid.NewGuid();
+    }
+
+
     private string username;
     public string Username
     {
@@ -60,15 +72,6 @@ namespace Bank.MyBank.Models
     private Account account;
     public Account Account { get; set; }
 
-    public Customer(string username, string password, string firstName, string lastName, UserEnum userType)
-    {
-      this.username = username;
-      this.password = password;
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.userType = userType;
-      this.id = Guid.NewGuid();
-    }
 
     public void SeeActivity(IUser user, string password, UserEnum type)
     {

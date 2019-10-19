@@ -28,8 +28,10 @@ namespace Bank.MyBank
       LoginViewModel viewModel = new LoginViewModel();
       LoginView mw = new LoginView(viewModel);
 
-      Account model = new Account();
-      mw.Show();
+      MainView mainView = new MainView();
+      mainView.Content = mw;
+      mainView.Show();
+      ;
     }
   }
 }

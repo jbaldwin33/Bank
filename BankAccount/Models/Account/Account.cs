@@ -21,8 +21,15 @@ namespace Bank.MyBank.Models
         SetProperty(ref balance, value);
       }
     }
-    public IUser User { get; }
-    
+
+    private IUser user;
+    public IUser User
+    {
+      get { return user; }
+      set { SetProperty(ref user, value); }
+    }
+
+
     public void AddToBalance(double amount)
     {
       balance += amount;

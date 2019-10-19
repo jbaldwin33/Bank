@@ -17,21 +17,24 @@ using System.Windows.Shapes;
 namespace Bank.MyBank.Views
 {
   /// <summary>
-  /// Interaction logic for AccountDetailsView.xaml
+  /// Interaction logic for SignUpView.xaml
   /// </summary>
-  public partial class AccountDetailsView : UserControl
+  public partial class SignUpView : UserControl
   {
-    private AccountDetailsViewModel viewModel;
-    public AccountDetailsView(AccountDetailsViewModel viewModel) : base()
+    private SignUpViewModel viewModel;
+    public SignUpView(SignUpViewModel viewModel)
     {
       InitializeComponent();
       this.viewModel = viewModel;
       DataContext = viewModel;
+      viewModel.SignUpHandler += SignUpHandler;
+
     }
 
-    public void GoToNextPage()
+    private void SignUpHandler(object sender, EventArgs e)
     {
-      
+      if (viewModel.SignUpComplete)
+        this.Content = new AccountDetailsView(new AccountDetailsViewModel());
     }
   }
 }

@@ -19,7 +19,7 @@ namespace Bank.MyBank.Views
   /// <summary>
   /// Interaction logic for LoginView.xaml
   /// </summary>
-  public partial class LoginView : Window
+  public partial class LoginView : UserControl
   {
     private LoginViewModel viewModel;
     public LoginView(LoginViewModel viewModel)
@@ -39,7 +39,7 @@ namespace Bank.MyBank.Views
     private void LoginHandler(object sender, EventArgs e)
     {
       if (!viewModel.LoginFailed)
-        new AccountDetailsView(new AccountDetailsViewModel()).Show();
+        this.Content = new AccountDetailsView(new AccountDetailsViewModel());
     }
   }
 }
