@@ -15,4 +15,3 @@ C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.pdb
 C:\Users\USER\Visual Studio Projects\Bank\_Debug\MyBank.exe
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\App.g.cs
 C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.exe
-C:\Users\USER\Visual Studio Projects\Bank\BankAccount\obj\Debug\MyBank.csprojAssemblyReference.cache

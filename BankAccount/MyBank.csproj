@@ -57,9 +57,6 @@
     <Compile Include="BankInstance.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\INavigation.cs" />
-    <Compile Include="ViewViewModel\GridView.cs" />
-    <Compile Include="ViewViewModel\IView.cs" />
-    <Compile Include="ViewViewModel\ViewHelper.cs" />
     <Compile Include="Models\Account\IAccount.cs" />
     <Compile Include="Models\User\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
