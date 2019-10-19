@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Bank.MyBank.ViewModels
@@ -34,15 +35,24 @@ namespace Bank.MyBank.ViewModels
     private void Login()
     {
       if (!string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password))
-        LoginFailed = true;
-      else
+      {
         LoginFailed = false;
+        DoLogin();
+      }
+      else
+      {
+        LoginFailed = true;
+        string property = string.IsNullOrEmpty(Username) ? "Username" : "Password";
+        OnDisplayMessage($"{property} cannot be empty.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      }
     }
+
 
     public event EventHandler LoginHandler;
     private void DoLogin()
     {
-      LoginHandler?.Invoke(this, null);
+      var eventDelegate = LoginHandler;
+      eventDelegate?.Invoke(this, null);
     }
 
     public ICommand LoginCommand => new RelayCommand(() => { Login(); });

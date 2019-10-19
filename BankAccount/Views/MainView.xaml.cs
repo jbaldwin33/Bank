@@ -22,7 +22,7 @@ namespace Bank.MyBank.Views
   {
     public MainView()
     {
-      //InitializeComponent();
+      InitializeComponent();
     }
   }
 }

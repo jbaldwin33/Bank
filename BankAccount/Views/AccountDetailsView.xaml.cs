@@ -24,6 +24,7 @@ namespace Bank.MyBank.Views
     private AccountDetailsViewModel viewModel;
     public AccountDetailsView(AccountDetailsViewModel viewModel) : base()
     {
+      InitializeComponent();
       this.viewModel = viewModel;
       DataContext = viewModel;
     }

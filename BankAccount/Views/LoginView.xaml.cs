@@ -24,9 +24,16 @@ namespace Bank.MyBank.Views
     private LoginViewModel viewModel;
     public LoginView(LoginViewModel viewModel)
     {
+      InitializeComponent();
       this.viewModel = viewModel;
       DataContext = viewModel;
       viewModel.LoginHandler += LoginHandler;
+      viewModel.DisplayMessage += DisplayMessageHandler;
+    }
+
+    private void DisplayMessageHandler(object sender, BaseViewModel.MessageBoxNotificationEventArgs e)
+    {
+      MessageBox.Show($"{e.PropertyName} {e.Message}", e.Caption, e.Buttons, e.Icon);
     }
 
     private void LoginHandler(object sender, EventArgs e)
