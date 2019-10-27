@@ -10,8 +10,9 @@ namespace Bank
 {
   public static class Utilities
   {
-    public static bool DoCommand(IUser user, CommandType type)
+    public static bool DoCommand(IUser user)
     {
+      //Delegate o = new AddCommandDelegate(user);
       SaveToDatabase();
       return true;
     }
@@ -38,4 +39,5 @@ namespace Bank
     Edit,
     Delete
   }
+
 }

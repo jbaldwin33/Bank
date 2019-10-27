@@ -63,6 +63,7 @@
     <Compile Include="Models\User\Administrator.cs" />
     <Compile Include="Models\User\Customer.cs" />
     <Compile Include="Models\User\UserEnum.cs" />
+    <Compile Include="UserCommands.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="ViewModels\AccountDetailsViewModel.cs" />
     <Compile Include="ViewModels\AdministratorViewModel.cs" />
