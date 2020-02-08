@@ -25,13 +25,12 @@ namespace Bank.MyBank
   {
     private void On_Startup(object sender, StartupEventArgs e)
     {
-      LoginViewModel viewModel = new LoginViewModel();
-      LoginView mw = new LoginView(viewModel);
+      var loginViewModel = new LoginViewModel();
+      var loginView = new LoginView(loginViewModel);
 
-      MainView mainView = new MainView();
-      mainView.Content = mw;
+      var mainView = new MainView();
+      mainView.Content = loginView;
       mainView.Show();
-      ;
     }
   }
 }

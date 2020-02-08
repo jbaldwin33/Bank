@@ -11,7 +11,7 @@ namespace Bank.MyBank.ViewModels
   {
     public AccountDetailsViewModel()
     {
-      FirstName = "Josh";
+      
     }
 
     private string username;
@@ -28,20 +28,6 @@ namespace Bank.MyBank.ViewModels
       set { SetProperty(ref balance, value); }
     }
 
-    private string firstName;
-    public string FirstName
-    {
-      get { return firstName; }
-      set { SetProperty(ref firstName, value); }
-    }
-
-    private string lastName;
-    public string LastName
-    {
-      get { return lastName; }
-      set { SetProperty(ref lastName, value); }
-    }
-
     private bool nextOk;
     public bool NextOk
     {
@@ -49,6 +35,7 @@ namespace Bank.MyBank.ViewModels
       set { SetProperty(ref nextOk, value); }
     }
 
+    public event EventHandler NextPageHandler;
 
     public bool SaveChanges()
     {
@@ -58,10 +45,16 @@ namespace Bank.MyBank.ViewModels
 
     public void GoToNext()
     {
-      NextOk = true;
+      NextPageEvent();
     }
 
-    public ICommand SaveCommand => new RelayCommand(() => { SaveChanges(); });
-    public ICommand NextCommand => new RelayCommand(() => { GoToNext(); });
+    private void NextPageEvent()
+    {
+      var eventDelegate = NextPageHandler;
+      eventDelegate?.Invoke(this, null);
+    }
+
+    //public ICommand SaveCommand => new RelayCommand(() => { SaveChanges(); });
+    public ICommand NextCommand => new RelayCommand((e) => { GoToNext(); });
   }
 }

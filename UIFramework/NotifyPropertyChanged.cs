@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
-namespace Bank.MyBank
+namespace Bank.UIFramework
 {
   public class NotifyPropertyChanged : INotifyPropertyChanged
   {

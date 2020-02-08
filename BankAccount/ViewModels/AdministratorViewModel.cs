@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Bank.MyBank.ViewModels
 {
-  public class AdministratorViewModel
+  public class AdministratorViewModel : BaseViewModel
   {
+    
   }
 }

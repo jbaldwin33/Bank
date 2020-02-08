@@ -1,4 +1,5 @@
 ﻿using Bank.MyBank.ViewModels;
+using Bank.MyBank.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,16 +20,15 @@ namespace Bank.MyBank.Views
   /// <summary>
   /// Interaction logic for LoginView.xaml
   /// </summary>
-  public partial class LoginView : UserControl
+  public partial class LoginView : BaseView
   {
     private LoginViewModel viewModel;
-    public LoginView(LoginViewModel viewModel)
+    public LoginView(LoginViewModel viewModel) : base(viewModel)
     {
       InitializeComponent();
       this.viewModel = viewModel;
-      DataContext = viewModel;
-      viewModel.LoginHandler += LoginHandler;
-      viewModel.DisplayMessage += DisplayMessageHandler;
+      this.viewModel.LoginHandler += LoginHandler;
+      this.viewModel.DisplayMessage += DisplayMessageHandler;
     }
 
     private void DisplayMessageHandler(object sender, BaseViewModel.MessageBoxNotificationEventArgs e)
@@ -39,7 +39,9 @@ namespace Bank.MyBank.Views
     private void LoginHandler(object sender, EventArgs e)
     {
       if (!viewModel.LoginFailed)
-        this.Content = new AccountDetailsView(new AccountDetailsViewModel());
+      {
+        (Parent as Window).Content = sender as BaseViewModel;
+      }
     }
   }
 }

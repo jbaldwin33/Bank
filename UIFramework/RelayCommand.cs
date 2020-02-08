@@ -5,19 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Bank.MyBank
+namespace Bank.UIFramework
 {
   public class RelayCommand : ICommand
   {
-    private readonly Action execute;
-    private readonly Func<Boolean> canExecute;
+    private readonly Action<object> execute;
+    private readonly Predicate<object> canExecute;
 
-    public RelayCommand(Action execute) : this(execute, null)
+    public RelayCommand(Action<object> execute) : this(execute, null)
     {
       this.execute = execute;
     }
 
-    public RelayCommand(Action execute, Func<Boolean> canExecute)
+    public RelayCommand(Action<object> execute, Predicate<object> canExecute)
     {
       this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
       this.canExecute = canExecute;
@@ -25,13 +25,10 @@ namespace Bank.MyBank
 
     public bool CanExecute(object parameter)
     {
-      return (canExecute == null) || canExecute();
+      return canExecute == null ? true : canExecute(parameter);
     }
 
-    public void Execute(object parameter)
-    {
-      execute();
-    }
+    public void Execute(object parameter) => execute(parameter);
 
     // Ensures WPF commanding infrastructure asks all RelayCommand objects whether their
     // associated views should be enabled whenever a command is invoked 

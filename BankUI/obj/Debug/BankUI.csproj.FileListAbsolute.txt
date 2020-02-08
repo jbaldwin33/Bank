@@ -1,5 +1,0 @@
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.csprojAssemblyReference.cache
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\Bank.AccountActivity.resources
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\Bank.Properties.Resources.resources
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.csproj.GenerateResource.cache
-C:\Users\USER\Visual Studio Projects\Bank\BankUI\obj\Debug\BankUI.csproj.CoreCompileInputs.cache

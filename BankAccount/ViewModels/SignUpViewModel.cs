@@ -115,7 +115,7 @@ namespace Bank.MyBank.ViewModels
       };
       user.Account = account;
 
-      Utilities.DoCommand(user, CommandType.Add);
+      //Utilities.DoCommand(user, CommandType.Add);
     }
 
     private bool ValidateFields()
@@ -147,6 +147,6 @@ namespace Bank.MyBank.ViewModels
       eventDelegate?.Invoke(this, null);
     }
 
-    public ICommand SignUpCommand => new RelayCommand(() => { SignUp(); });
+    //public ICommand SignUpCommand => new RelayCommand(() => { SignUp(); });
   }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank.MyBank.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,9 +85,10 @@ namespace Bank.MyBank.ViewModels
     private void DoLogin()
     {
       var eventDelegate = LoginHandler;
-      eventDelegate?.Invoke(this, null);
+      var newView = new AccountDetailsView(new AccountDetailsViewModel());
+      eventDelegate?.Invoke(newView, null);
     }
 
-    public ICommand LoginCommand => new RelayCommand(() => { Login(); });
+    public ICommand LoginCommand => new RelayCommand((e) => { Login(); });
   }
 }

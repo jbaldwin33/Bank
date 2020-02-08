@@ -18,26 +18,21 @@ using System.Windows.Shapes;
 namespace Bank.MyBank.Views
 {
   /// <summary>
-  /// Interaction logic for AccountDetailsView.xaml
+  /// Interaction logic for PersonalDetailsView.xaml
   /// </summary>
-  public partial class AccountDetailsView : BaseView
+  public partial class PersonalDetailsView : BaseView
   {
-    private AccountDetailsViewModel viewModel;
-    public AccountDetailsView(AccountDetailsViewModel viewModel) : base (viewModel)
+    PersonalDetailsViewModel viewModel;
+    public PersonalDetailsView(PersonalDetailsViewModel viewModel) : base(viewModel)
     {
       InitializeComponent();
       this.viewModel = viewModel;
-      this.viewModel.NextPageHandler += NextPage;
+      this.viewModel.GoBackHandler += GoBackHandler;
     }
 
-    private void NextPage(object sender, EventArgs e)
+    private void GoBackHandler(object sender, EventArgs e)
     {
-      (Parent as Window).Content = new PersonalDetailsView(new PersonalDetailsViewModel());
-    }
-
-    public override void GoToNext()
-    {
-      
+      (Parent as Window).Content = new AccountDetailsView(new AccountDetailsViewModel());
     }
   }
 }

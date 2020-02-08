@@ -1,14 +1,10 @@
-﻿<Window x:Class="Bank.MyBank.Views.MainView"
+﻿<Page x:Class="Bank.UIFramework.ViewViewModel.BaseView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Bank.MyBank.ViewModels"
-             xmlns:local1="clr-namespace:Bank.MyBank.Views"
+             xmlns:local="clr-namespace:Bank.UIFramework.ViewViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-  
-  <Grid>
-            
-    </Grid>
-</Window>
+    
+</Page>
