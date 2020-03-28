@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bank.UIFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -69,7 +70,7 @@ namespace Bank.MyBank.Models
       set { SetProperty(ref id, value); }
     }
 
-    private Account account;
+    //private Account account;
     public Account Account { get; set; }
 
 

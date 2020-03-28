@@ -11,7 +11,6 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
     <StackPanel Grid.Row="0" Orientation="Horizontal">
       <TextBlock Text="First name"/>
@@ -20,9 +19,6 @@
     <StackPanel Grid.Row="1" Orientation="Horizontal">
       <TextBlock Text="Last name"/>
       <TextBox Text="{Binding Path=LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="100"/>
-    </StackPanel>
-    <StackPanel Grid.Row="2">
-      <Button Command="{Binding Path=BackCommand}" Content="Back" HorizontalAlignment="Left" Width="100"/>
     </StackPanel>
   </Grid>
 </base:BaseView>

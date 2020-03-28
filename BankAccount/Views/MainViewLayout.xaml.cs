@@ -1,5 +1,4 @@
 ﻿using Bank.MyBank.ViewModels;
-using Bank.UIFramework.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,17 +17,14 @@ using System.Windows.Shapes;
 namespace Bank.MyBank.Views
 {
   /// <summary>
-  /// Interaction logic for AccountDetailsView.xaml
+  /// Interaction logic for MainViewLayout.xaml
   /// </summary>
-  public partial class AccountDetailsView : BaseView
+  public partial class MainViewLayout : UserControl
   {
-    private AccountDetailsViewModel viewModel;
-
-    public AccountDetailsView(AccountDetailsViewModel viewModel) : base(viewModel)
+    public MainViewLayout(MainViewModel viewModel)
     {
       InitializeComponent();
-      this.viewModel = viewModel;
+      DataContext = viewModel;
     }
-
   }
 }

@@ -1,4 +1,5 @@
 ﻿using Bank.MyBank.ViewModels;
+using Bank.UIFramework.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,14 +20,13 @@ namespace Bank.MyBank.Views
   /// <summary>
   /// Interaction logic for SignUpView.xaml
   /// </summary>
-  public partial class SignUpView : UserControl
+  public partial class SignUpView : BaseView
   {
     private SignUpViewModel viewModel;
-    public SignUpView(SignUpViewModel viewModel)
+    public SignUpView(SignUpViewModel viewModel) : base(viewModel)
     {
-      InitializeComponent();
+      //InitializeComponent();
       this.viewModel = viewModel;
-      DataContext = viewModel;
       viewModel.SignUpHandler += SignUpHandler;
 
     }
@@ -34,7 +34,7 @@ namespace Bank.MyBank.Views
     private void SignUpHandler(object sender, EventArgs e)
     {
       if (viewModel.SignUpComplete)
-        this.Content = new AccountDetailsView(new AccountDetailsViewModel());
+        (Parent as Window).Content = new AccountDetailsView(new AccountDetailsViewModel());
     }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using Bank.MyBank.Models;
 using Bank.MyBank.ViewModels;
 using Bank.MyBank.Views;
+using Bank.UIFramework.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +26,16 @@ namespace Bank.MyBank
   {
     private void On_Startup(object sender, StartupEventArgs e)
     {
-      var loginViewModel = new LoginViewModel();
-      var loginView = new LoginView(loginViewModel);
+      var mainviewModel = new MainViewModel();
 
-      var mainView = new MainView();
-      mainView.Content = loginView;
+      var mainView = new MainView(mainviewModel);
+
       mainView.Show();
+    }
+
+    private void LoginViewModel_LoginHandler(object sender, EventArgs e)
+    {
+      
     }
   }
 }

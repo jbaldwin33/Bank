@@ -11,22 +11,23 @@ namespace Bank.UIFramework.ViewViewModel
   /// <summary>
   /// Interaction logic for BaseView.xaml
   /// </summary>
-  public partial class BaseView : Page
+  public class BaseView : UserControl, IView
   {
     public BaseView(BaseViewModel viewModel)
     {
-      InitializeComponent();
       DataContext = viewModel;
     }
 
-    public virtual void GoToNext()
+    public IView ShowNext(IView view)
     {
-
+      //return (Parent as Window);
+      return null;
     }
 
-    protected virtual void GoToPrevious()
+    public IView ShowPrevious(IView view)
     {
-
+      (Parent as Page).Content = view;
+      return null;
     }
   }
 }

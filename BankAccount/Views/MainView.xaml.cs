@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bank.MyBank.ViewModels;
+using Bank.UIFramework.ViewViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,39 @@ namespace Bank.MyBank.Views
   /// </summary>
   public partial class MainView : Window
   {
-    public MainView()
+    private MainViewModel viewModel;
+    private MainViewLayout mainViewLayout;
+    //public event EventHandler ShowNextHandler;
+    //public event EventHandler ShowPreviousHandler;
+    public MainView(MainViewModel viewModel)
     {
+      this.mainViewLayout = new MainViewLayout(viewModel);
+      this.viewModel = viewModel;
+      this.viewModel.PropertyChanged += ViewModel_PropertyChanged;
       InitializeComponent();
+
+      var loginViewModel = new LoginViewModel();
+      loginViewModel.LoginHandler += LoginViewModel_LoginHandler;
+      var loginView = new LoginView(loginViewModel);
+      contentControl.Content = loginView;
+    }
+
+    private void LoginViewModel_LoginHandler(object sender, EventArgs e)
+    {
+      viewModel.CurrentPageView = new AccountDetailsView(new AccountDetailsViewModel());
+      mainViewLayout.contentControl.Content = viewModel.CurrentPageView;
+      contentControl.Content = mainViewLayout;
+    }
+
+    private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+      if (e.PropertyName == nameof(MainViewModel.CurrentPageView))
+        mainViewLayout.contentControl.Content = viewModel.CurrentPageView;
+    }
+
+    public void ShowNext()
+    {
+      
     }
   }
 }

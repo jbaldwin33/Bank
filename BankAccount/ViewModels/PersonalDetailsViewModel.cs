@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bank.UIFramework;
+using Bank.UIFramework.ViewViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -1,5 +1,5 @@
 ﻿using Bank.MyBank.ViewModels;
-using Bank.MyBank.ViewViewModel;
+using Bank.UIFramework.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +27,7 @@ namespace Bank.MyBank.Views
     {
       InitializeComponent();
       this.viewModel = viewModel;
-      this.viewModel.GoBackHandler += GoBackHandler;
     }
 
-    private void GoBackHandler(object sender, EventArgs e)
-    {
-      (Parent as Window).Content = new AccountDetailsView(new AccountDetailsViewModel());
-    }
   }
 }

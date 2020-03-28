@@ -1,5 +1,5 @@
 ﻿using Bank.MyBank.ViewModels;
-using Bank.MyBank.ViewViewModel;
+using Bank.UIFramework.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +40,7 @@ namespace Bank.MyBank.Views
     {
       if (!viewModel.LoginFailed)
       {
-        (Parent as Window).Content = sender as BaseViewModel;
+        
       }
     }
   }

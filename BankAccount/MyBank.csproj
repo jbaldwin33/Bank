@@ -71,6 +71,9 @@
     <Compile Include="ViewModels\AdministratorViewModel.cs" />
     <Compile Include="ViewModels\PersonalDetailsViewModel.cs" />
     <Compile Include="ViewModels\SignUpViewModel.cs" />
+    <Compile Include="Views\MainViewLayout.xaml.cs">
+      <DependentUpon>MainViewLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PersonalDetailsView.xaml.cs">
       <DependentUpon>PersonalDetailsView.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainViewLayout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

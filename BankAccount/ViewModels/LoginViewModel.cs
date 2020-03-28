@@ -1,4 +1,6 @@
 ﻿using Bank.MyBank.Views;
+using Bank.UIFramework;
+using Bank.UIFramework.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
