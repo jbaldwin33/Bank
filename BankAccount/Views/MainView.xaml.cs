@@ -20,17 +20,16 @@ namespace Bank.MyBank.Views
   /// <summary>
   /// Interaction logic for MainView.xaml
   /// </summary>
-  public partial class MainView : Window
+  public partial class MainView : BaseView
   {
     private MainViewModel viewModel;
-    private MainViewLayout mainViewLayout;
     //public event EventHandler ShowNextHandler;
     //public event EventHandler ShowPreviousHandler;
-    public MainView(MainViewModel viewModel)
+    public MainView(MainViewModel viewModel) : base(viewModel)
     {
-      this.mainViewLayout = new MainViewLayout(viewModel);
+      //this.mainViewLayout = new MainViewLayout(viewModel);
       this.viewModel = viewModel;
-      this.viewModel.PropertyChanged += ViewModel_PropertyChanged;
+      
       InitializeComponent();
 
       var loginViewModel = new LoginViewModel();
@@ -42,14 +41,14 @@ namespace Bank.MyBank.Views
     private void LoginViewModel_LoginHandler(object sender, EventArgs e)
     {
       viewModel.CurrentPageView = new AccountDetailsView(new AccountDetailsViewModel());
-      mainViewLayout.contentControl.Content = viewModel.CurrentPageView;
-      contentControl.Content = mainViewLayout;
+      //mainViewLayout.contentControl.Content = viewModel.CurrentPageView;
+      //contentControl.Content = mainViewLayout;
     }
 
     private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
-      if (e.PropertyName == nameof(MainViewModel.CurrentPageView))
-        mainViewLayout.contentControl.Content = viewModel.CurrentPageView;
+      //if (e.PropertyName == nameof(MainViewModel.CurrentPageView))
+      //  mainViewLayout.contentControl.Content = viewModel.CurrentPageView;
     }
 
     public void ShowNext()

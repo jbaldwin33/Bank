@@ -1,4 +1,5 @@
 ﻿using Bank.MyBank.ViewModels;
+using Bank.UIFramework.ViewViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,20 @@ namespace Bank.MyBank.Views
   /// </summary>
   public partial class MainViewLayout : UserControl
   {
-    public MainViewLayout(MainViewModel viewModel)
+    private BaseView[] views;
+    public MainViewLayout(BaseView[] views)
     {
+      if (views == null || views.Count() < 1)
+        throw new ArgumentException();
+
       InitializeComponent();
-      DataContext = viewModel;
+      this.views = views;
+      Show();
+    }
+
+    private void Show()
+    {
+      views[0].Show();
     }
   }
 }
