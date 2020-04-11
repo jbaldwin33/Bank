@@ -6,73 +6,34 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Bank.MyBank.Models.Enums;
 
 namespace Bank.MyBank.Models
 {
-  public class Customer : NotifyPropertyChanged, IUser
+  public class Customer //: NotifyPropertyChanged, IUser
   {
+    public Guid ID { get; private set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public Guid AccountID { get; set; }
+    public string Username { get; set; }
+    public SecurePassword SecurePassword { get; set; }
+    public string PasswordHash { get; set; }
+    public int PasswordSalt { get; set; }
+    public UserEnum UserType { get; set; }
+
     public Customer() { }
     public Customer(string username, string password, string firstName, string lastName, UserEnum userType)
     {
-      this.username = username;
-      this.password = password;
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.userType = userType;
-      this.id = Guid.NewGuid();
+      Username = username;
+      PasswordSalt = Utilities.CreateSalt();
+      SecurePassword = new SecurePassword(password, PasswordSalt);
+      PasswordHash = SecurePassword.ComputeSaltedHash();
+      FirstName = firstName;
+      LastName = lastName;
+      UserType = userType;
+      ID = Guid.NewGuid();
     }
-
-
-    private string username;
-    public string Username
-    {
-      get { return username; }
-      set
-      {
-        SetProperty(ref username, value);
-      }
-    }
-    private string password;
-    public string Password
-    {
-      get { return password; }
-      set
-      {
-        SetProperty(ref password, value);
-      }
-    }
-
-    private string firstName;
-    public string FirstName
-    {
-      get { return firstName; }
-      set { SetProperty(ref firstName, value); }
-    }
-
-    private string lastName;
-    public string LastName
-    {
-      get { return lastName; }
-      set { SetProperty(ref lastName, value); }
-    }
-
-    private UserEnum userType;
-    public UserEnum UserType
-    {
-      get { return userType; }
-      set { SetProperty(ref userType, value); }
-    }
-
-    private Guid id;
-    public Guid ID
-    {
-      get { return id; }
-      set { SetProperty(ref id, value); }
-    }
-
-    //private Account account;
-    public Account Account { get; set; }
-
 
     public void SeeActivity(IUser user, string password, UserEnum type)
     {

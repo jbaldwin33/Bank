@@ -9,7 +9,7 @@ namespace Bank.MyBank.Models
 {
   public interface IAccount
   {
-    double Balance { get; set; }
+    float Balance { get; set; }
     IUser User { get; }
   }
 }

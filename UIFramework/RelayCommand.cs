@@ -9,15 +9,27 @@ namespace Bank.UIFramework
 {
   public class RelayCommand : ICommand
   {
-    private readonly Action<object> execute;
-    private readonly Predicate<object> canExecute;
+    private readonly Action execute;
+    private readonly Action<object> executeWithParameter;
+    private readonly Func<object, bool> canExecute;
 
     public RelayCommand(Action<object> execute) : this(execute, null)
+    {
+      this.executeWithParameter = execute;
+    }
+
+    public RelayCommand(Action<object> execute, Func<object, bool> canExecute)
+    {
+      this.executeWithParameter = execute ?? throw new ArgumentNullException(nameof(execute));
+      this.canExecute = canExecute;
+    }
+
+    public RelayCommand(Action execute) : this(execute, null)
     {
       this.execute = execute;
     }
 
-    public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+    public RelayCommand(Action execute, Func<object, bool> canExecute)
     {
       this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
       this.canExecute = canExecute;
@@ -28,7 +40,9 @@ namespace Bank.UIFramework
       return canExecute == null ? true : canExecute(parameter);
     }
 
-    public void Execute(object parameter) => execute(parameter);
+    public void Execute() => execute();
+
+    public void Execute(object parameter) => executeWithParameter(parameter);
 
     // Ensures WPF commanding infrastructure asks all RelayCommand objects whether their
     // associated views should be enabled whenever a command is invoked 

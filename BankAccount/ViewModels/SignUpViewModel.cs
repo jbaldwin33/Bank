@@ -1,12 +1,10 @@
 ﻿using Bank.MyBank.Models;
+using Bank.UIFramework;
 using Bank.UIFramework.ViewViewModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows;
-using System.Windows.Input;
+using static Bank.MyBank.Models.Enums;
 
 namespace Bank.MyBank.ViewModels
 {
@@ -16,9 +14,10 @@ namespace Bank.MyBank.ViewModels
     private string lastName;
     private string username;
     private string password;
-    private double startingBalance;
+    private float startingBalance;
     private bool signUpComplete;
-    private bool loginFailed;
+    private bool loginSuccessful;
+    private RelayCommand signUpCommand;
 
     public SignUpViewModel()
     {
@@ -45,11 +44,11 @@ namespace Bank.MyBank.ViewModels
 
     public string Password
     {
-      get { return password; }
-      set { SetProperty(ref password, value); }
+      get => password;
+      set => SetProperty(ref password, value);
     }
 
-    public double StartingBalance
+    public float StartingBalance
     {
       get { return startingBalance; }
       set { SetProperty(ref startingBalance, value); }
@@ -61,10 +60,10 @@ namespace Bank.MyBank.ViewModels
       set { SetProperty(ref signUpComplete, value); }
     }
 
-    public bool LoginFailed
+    public bool LoginSuccessful
     {
-      get { return loginFailed; }
-      set { SetProperty(ref loginFailed, value); }
+      get { return loginSuccessful; }
+      set { SetProperty(ref loginSuccessful, value); }
     }
 
 
@@ -77,8 +76,7 @@ namespace Bank.MyBank.ViewModels
         SignUpComplete = true;
         try
         {
-          Utilities.Login(Username, Password);
-          LoginFailed = false;
+          LoginSuccessful = Utilities.Login(Username, Password);
         }
         catch (NullReferenceException ex) //not found exception
         {
@@ -90,7 +88,7 @@ namespace Bank.MyBank.ViewModels
         }
         finally
         {
-          if (!LoginFailed)
+          if (LoginSuccessful)
             DoSignUp();
         }
       }
@@ -100,21 +98,65 @@ namespace Bank.MyBank.ViewModels
 
     private void CreateUser()
     {
-      Customer user = new Customer()
+      Customer user = new Customer(username, password, firstName, lastName, UserEnum.User);
+      Account account = new Account(startingBalance, AccountTypeEnum.Checking);
+      user.AccountID = account.ID;
+      account.UserID = user.ID;
+
+      //add user to database
+      var connection = new SqlConnection(@"Server=.\SQLEXPRESS;Database=Bank;Trusted_Connection=True;");
+      var query = "INSERT INTO User (ID, FirstName, LastName, AccountID, PasswordHash, PasswordSalt, UserType, Username) VALUES(@ID, @FirstName, @LastName, @AccountID, @PasswordHash, @PasswordSalt, @UserType, @Username)";
+      var command = new SqlCommand(query, connection);
+
+      //add parameters to query
+      command.Parameters.AddWithValue("@ID", user.ID);
+      command.Parameters.AddWithValue("@FirstName", user.FirstName);
+      command.Parameters.AddWithValue("@LastName", user.LastName);
+      command.Parameters.AddWithValue("@AccountID", user.AccountID);
+      command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
+      command.Parameters.AddWithValue("@PasswordSalt", user.PasswordSalt);
+      command.Parameters.AddWithValue("@UserType", (int)user.UserType);
+      command.Parameters.AddWithValue("@Username", user.Username);
+
+      try
       {
-        FirstName = firstName,
-        LastName = lastName,
-        Username = username,
-        Password = password,
-        UserType = UserEnum.User,
-        ID = Guid.NewGuid()
-      };
-      Account account = new Account()
+        connection.Open();
+        command.ExecuteNonQuery();
+        MessageBox.Show("User added successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+      }
+      catch (SqlException sqe)
       {
-        Balance = startingBalance,
-        User = user
-      };
-      user.Account = account;
+        MessageBox.Show($"An error occurred while adding the user: {sqe.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      }
+      finally
+      {
+        connection.Close();
+      }
+
+      //add account to database
+      query = "INSERT INTO Account (ID, AccountType, Balance, UserID) VALUES(@ID, @AccountType, @Balance, @UserID)";
+      command = new SqlCommand(query, connection);
+
+      //add parameters to query
+      command.Parameters.AddWithValue("@ID", account.ID);
+      command.Parameters.AddWithValue("@AccountType", (int)account.AccountType);
+      command.Parameters.AddWithValue("@Balance", account.Balance);
+      command.Parameters.AddWithValue("@UserID", account.UserID);
+
+      try
+      {
+        connection.Open();
+        command.ExecuteNonQuery();
+        MessageBox.Show("Account created successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+      }
+      catch (SqlException sqe)
+      {
+        MessageBox.Show($"An error occurred while creating the account: {sqe.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      }
+      finally
+      {
+        connection.Close();
+      }
 
       //Utilities.DoCommand(user, CommandType.Add);
     }
@@ -148,6 +190,6 @@ namespace Bank.MyBank.ViewModels
       eventDelegate?.Invoke(this, null);
     }
 
-    //public ICommand SignUpCommand => new RelayCommand(() => { SignUp(); });
+    public RelayCommand SignUpCommand => signUpCommand ?? (signUpCommand = new RelayCommand(SignUp));
   }
 }

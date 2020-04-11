@@ -25,7 +25,7 @@ namespace Bank.MyBank.Views
     private SignUpViewModel viewModel;
     public SignUpView(SignUpViewModel viewModel) : base(viewModel)
     {
-      //InitializeComponent();
+      InitializeComponent();
       this.viewModel = viewModel;
       viewModel.SignUpHandler += SignUpHandler;
 

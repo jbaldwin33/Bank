@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Models\Account\Account.cs" />
     <Compile Include="BankInstance.cs" />
+    <Compile Include="SecurePassword.cs" />
     <Compile Include="Services\INavigation.cs" />
     <Compile Include="Models\Account\IAccount.cs" />
     <Compile Include="Models\User\IUser.cs" />

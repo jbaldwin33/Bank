@@ -5,35 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bank.MyBank;
 using System.Runtime.CompilerServices;
+using static Bank.MyBank.Models.Enums;
 
 namespace Bank.MyBank.Models
 {
-  public class Account : NotifyPropertyChanged, IAccount
+  public class Account //: NotifyPropertyChanged, IAccount
   {
-    private double balance;
-    public double Balance
+    public Guid ID { get; private set; }
+    public float Balance { get; set; }
+    public Guid UserID { get; set; }
+    public AccountTypeEnum AccountType { get; set; }
+
+    public Account(float balance, AccountTypeEnum accountType)
     {
-      get => balance;
-      set
-      {
-        balance = value;
-        SetProperty(ref balance, value);
-      }
+      ID = Guid.NewGuid();
+      Balance = balance;
+      AccountType = accountType;
     }
-
-    private IUser user;
-    public IUser User
+    
+    public void AddToBalance(float amount)
     {
-      get { return user; }
-      set { SetProperty(ref user, value); }
-    }
-
-
-    public void AddToBalance(double amount)
-    {
-      balance += amount;
+      Balance += amount;
     }
   }
 }

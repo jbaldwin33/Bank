@@ -6,9 +6,25 @@ using System.Threading.Tasks;
 
 namespace Bank.MyBank.Models
 {
-  public enum UserEnum
+  public static class Enums
   {
-    Administrator = 0,
-    User
+    public enum AccountTypeEnum
+    {
+      Checking,
+      Saving
+    }
+
+    public enum UserEnum
+    {
+      Administrator = 0,
+      User
+    }
+
+    public enum CommandType
+    {
+      Add,
+      Edit,
+      Delete
+    }
   }
 }
