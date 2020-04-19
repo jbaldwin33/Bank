@@ -1,8 +1,11 @@
 ﻿using Bank.MyBank.Models;
 using Bank.UIFramework;
+using Bank.UIFramework.Database;
 using Bank.UIFramework.ViewViewModel;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Text;
 using System.Windows;
 using static Bank.MyBank.Models.Enums;
 
@@ -72,8 +75,11 @@ namespace Bank.MyBank.ViewModels
       SignUpComplete = false;
       if (ValidateFields())
       {
-        CreateUser();
+        var successful = CreateUserAndAddToDatabase();
         SignUpComplete = true;
+        if (!successful)
+          return;
+
         try
         {
           LoginSuccessful = Utilities.Login(Username, Password);
@@ -96,69 +102,58 @@ namespace Bank.MyBank.ViewModels
         SignUpComplete = false;
     }
 
-    private void CreateUser()
+    private bool CreateUserAndAddToDatabase()
     {
       Customer user = new Customer(username, password, firstName, lastName, UserEnum.User);
       Account account = new Account(startingBalance, AccountTypeEnum.Checking);
       user.AccountID = account.ID;
       account.UserID = user.ID;
 
-      //add user to database
-      var connection = new SqlConnection(@"Server=.\SQLEXPRESS;Database=Bank;Trusted_Connection=True;");
-      var query = "INSERT INTO User (ID, FirstName, LastName, AccountID, PasswordHash, PasswordSalt, UserType, Username) VALUES(@ID, @FirstName, @LastName, @AccountID, @PasswordHash, @PasswordSalt, @UserType, @Username)";
-      var command = new SqlCommand(query, connection);
-
-      //add parameters to query
-      command.Parameters.AddWithValue("@ID", user.ID);
-      command.Parameters.AddWithValue("@FirstName", user.FirstName);
-      command.Parameters.AddWithValue("@LastName", user.LastName);
-      command.Parameters.AddWithValue("@AccountID", user.AccountID);
-      command.Parameters.AddWithValue("@PasswordHash", user.PasswordHash);
-      command.Parameters.AddWithValue("@PasswordSalt", user.PasswordSalt);
-      command.Parameters.AddWithValue("@UserType", (int)user.UserType);
-      command.Parameters.AddWithValue("@Username", user.Username);
-
-      try
+      var userKvps = new List<KeyValuePair<string, string>>
       {
-        connection.Open();
-        command.ExecuteNonQuery();
+        new KeyValuePair<string, string>("ID", user.ID.ToString()),
+        new KeyValuePair<string, string>("FIRSTNAME", user.FirstName),
+        new KeyValuePair<string, string>("LASTNAME", user.LastName),
+        new KeyValuePair<string, string>("ACCOUNTID", user.AccountID.ToString()),
+        new KeyValuePair<string, string>("PASSWORDHASH", user.PasswordHash),
+        new KeyValuePair<string, string>("PASSWORDSALT", user.PasswordSalt.ToString()),
+        new KeyValuePair<string, string>("USERTYPE", ((int)user.UserType).ToString()),
+        new KeyValuePair<string, string>("USERNAME", user.Username),
+      };
+
+      //this should be server call
+      var userAddResponse = DatabaseMethods.AddRowToDatabase("USER", userKvps);
+      
+      if (userAddResponse.Errors.Length > 0)
+        MessageBox.Show($"An error occurred while creating the user: {BuildErrorString(userAddResponse.Errors)}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      else
         MessageBox.Show("User added successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-      }
-      catch (SqlException sqe)
-      {
-        MessageBox.Show($"An error occurred while adding the user: {sqe.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-      }
-      finally
-      {
-        connection.Close();
-      }
 
-      //add account to database
-      query = "INSERT INTO Account (ID, AccountType, Balance, UserID) VALUES(@ID, @AccountType, @Balance, @UserID)";
-      command = new SqlCommand(query, connection);
-
-      //add parameters to query
-      command.Parameters.AddWithValue("@ID", account.ID);
-      command.Parameters.AddWithValue("@AccountType", (int)account.AccountType);
-      command.Parameters.AddWithValue("@Balance", account.Balance);
-      command.Parameters.AddWithValue("@UserID", account.UserID);
-
-      try
+      var accountKvps = new List<KeyValuePair<string, string>>
       {
-        connection.Open();
-        command.ExecuteNonQuery();
+        new KeyValuePair<string, string>("ID", account.ID.ToString()),
+        new KeyValuePair<string, string>("ACCOUNTTYPE", ((int)account.AccountType).ToString()),
+        new KeyValuePair<string, string>("BALANCE", account.Balance.ToString()),
+        new KeyValuePair<string, string>("USERID", account.UserID.ToString())
+      };
+
+      var accountAddResponse = DatabaseMethods.AddRowToDatabase("ACCOUNT", accountKvps);
+
+      if (accountAddResponse.Errors.Length > 0)
+        MessageBox.Show($"An error occurred while creating the account: {BuildErrorString(accountAddResponse.Errors)}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+      else
         MessageBox.Show("Account created successfully", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-      }
-      catch (SqlException sqe)
-      {
-        MessageBox.Show($"An error occurred while creating the account: {sqe.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-      }
-      finally
-      {
-        connection.Close();
-      }
 
-      //Utilities.DoCommand(user, CommandType.Add);
+      return userAddResponse.Successful && accountAddResponse.Successful;
+    }
+
+    private string BuildErrorString(string[] errors)
+    {
+      var stringBuilder = new StringBuilder();
+      foreach (var error in errors)
+        stringBuilder.Append($"{error} {Environment.NewLine}");
+
+      return stringBuilder.ToString();
     }
 
     private bool ValidateFields()
